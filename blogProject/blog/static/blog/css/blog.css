@@ -1,9 +1,17 @@
 .techfont{
     background-color: rgb(26, 25, 25);
 }
+.navright li{
+    text-align: right;
+}
 
 .bigbrand{
     font-size: 1.5em;
+}
+
+.centerstage{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .loader {
