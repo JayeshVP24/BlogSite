@@ -3,19 +3,20 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView,ListView,DetailView,CreateView, UpdateView, DeleteViews
+from django.views.generic import TemplateView,ListView,DetailView,CreateView, UpdateView, DeleteView
 from blog.models import Post, Comment
 from blog.forms import PostForm, CommentForm
 # Create your views here.
 
 class AboutView(TemplateView):
-    template_name = 'about.html'
+    template_name = 'blog/about.html'
 
 class PostListView(ListView):
     model = Post
+    template_name = 'blog/post_list.html'
     
     def get_queryset(self):
-        return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+        return Post.objects.filter(publishedDate__lte=timezone.now()).order_by('-published_date')
 
 class PostDetailView(DetailView):
     model = Post
@@ -32,7 +33,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     form_class = PostForm    
     model = Post
 
-class PostDeleteView(LoginRequiredMixin, DeleteViews):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('post_list')
 
@@ -42,7 +43,7 @@ class DraftListView(LoginRequiredMixin, ListView):
     model = Post
 
     def get_queryset(self):
-        return Post.objects.filter(published_date__isnull=True).order_by('created_date')
+        return Post.objects.filter(publishedDate__isnull=True).order_by('created_date')
 
 #######################################33
 
