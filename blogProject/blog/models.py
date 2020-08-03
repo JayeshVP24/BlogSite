@@ -18,16 +18,16 @@ class Post(models.Model):
         return self.comments.filter(approvedComments = True)
 
     def get_absolute_url(self):
-        return reverse('postDetail', kwargs={'pk':self.pk})
+        return reverse('post_detail', kwargs={'pk':self.pk})
 
     def __str__(self):
         return self.title
 
 class Comment(models.Model):
-    post = models.ForeignKey('blog.Post',related_name='comments',on_delete=models.DO_NOTHING) 
+    post = models.ForeignKey('blog.Post',related_name='comments',on_delete=models.CASCADE) 
     author = models.CharField(max_length=200)
     text = models.TextField()
-    createDate = models.DateField(default=True)
+    createDate = models.DateField(default=timezone.now)
     approvedComments = models.BooleanField(default=False)
 
     def approve(self):

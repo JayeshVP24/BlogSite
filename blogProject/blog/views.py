@@ -16,10 +16,11 @@ class PostListView(ListView):
     template_name = 'blog/post_list.html'
     
     def get_queryset(self):
-        return Post.objects.filter(publishedDate__lte=timezone.now()).order_by('-published_date')
+        return Post.objects.filter(publishedDate__lte=timezone.now()).order_by('-publishedDate')
 
 class PostDetailView(DetailView):
     model = Post
+    template_name = 'blog/post_detail.html'
 
 class PostCreateView(LoginRequiredMixin,CreateView):
     login_url = '/login/'
@@ -37,13 +38,14 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('post_list')
 
+
 class DraftListView(LoginRequiredMixin, ListView):
     login_url = '/login/'
     redirect_field_name = 'blog/post_list.html'
     model = Post
 
     def get_queryset(self):
-        return Post.objects.filter(publishedDate__isnull=True).order_by('created_date')
+        return Post.objects.filter(publishedDate__isnull=True).order_by('createDate')
 
 #######################################33
 
@@ -64,9 +66,9 @@ def add_comment_to_post(request, pk):
             comment.post = post
             comment.save()
             return redirect('post_detail',pk=post.pk)
-        else:
-            form = CommentForm()
-        return render(request, 'blog/comment_form.html',{'form':form})
+    else:
+        form = CommentForm()
+    return render(request, 'blog/comment_form.html',{'form':form})
 
 @login_required()
 def comment_approve(request,pk):
