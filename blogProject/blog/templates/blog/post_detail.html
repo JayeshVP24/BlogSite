@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h1 class="posttitle loader">{{post.title}}</h1>
+    <h1 class="posttitle">{{post.title}}</h1>
     {% if post.publishedDate %}
         <div class="date postdate">
             {{post.publishedDate}}
@@ -60,6 +60,7 @@
                     {% endif %}
                     <p>{{comment|safe|linebreaks}}</p>
                     <p>Posted By: {{comment.author}}</p>
+                    <p>Posted On: {{comment.createDate}}</p>
                 {% endif %}
                 {%empty%}
                 <p>No Comment</p>
