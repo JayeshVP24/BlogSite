@@ -7,7 +7,7 @@
 
 
 .bigbrand{
-    font-size: 1.5em;
+    font-size: 3em;
 }
 
 .centerstage{
@@ -15,19 +15,36 @@
     margin-right: auto;
 }
 
-.loader {
-    position:fixed;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
+.loader{
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
     filter:hue-rotate(0deg);
+
     background:linear-gradient(45deg,#0f8,#08f);
     animation:hue 10000ms infinite linear;
-   
   }
-body{
-    background-color: green;
+
+.content{
+    height: 100vh;
+    width: 100vh;
+}
+
+.navbar a{
+    font-size: 1.5em;
+    color: rgb(23, 99, 0);
+    font-weight: 600;
+}
+
+h1,h2,h3,p,h4,h5,h6,a{
+    color: rgb(255, 255, 255);
+}
+h1,h2,h3,h4,h5,h6,a{
+    color: rgb(48, 33, 90);
+}
+p{
+    color: rgb(216, 34, 34);
 }
 .postdate{
     text-align: center;
